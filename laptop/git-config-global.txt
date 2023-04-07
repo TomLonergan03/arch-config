@@ -1,0 +1,12 @@
+user.email=tomlonergan91@gmail.com
+user.name=Tom Lonergan
+user.signingkey=/home/infernox/.ssh/id_ed25519.pub
+core.editor=code
+gpg.format=ssh
+commit.gpgsign=true
+push.autosetupremote=true
+pull.rebase=false
+filter.strip-notebook-output.clean=jupyter nbconvert --ClearOutputPreprocessor.enabled=True --to=notebook --stdin --stdout --log-level=ERROR
+advice.addemptypathspec=false
+format.pretty=medium
+init.defaultbranch=main
