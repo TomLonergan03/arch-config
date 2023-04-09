@@ -24,5 +24,6 @@ sudo chown -R $WHOAMI:$WHOAMI $BACKUPFOLDER/wifi
 echo "Saved bashrc, fish config, gitconfig, hosts, wifi to $BACKUPFOLDER"
 
 echo $(sudo pacman -Qent) | tr " " "\n" | sed '0~2d' | tr "\n" " " > $BACKUPFOLDER/packages-pacman.txt
-echo $(sudo pacman -Qemt) | tr " " "\n" | sed '0~2d' | tr "\n" " " > $BACKUPFOLDER/packages-foreign.txt
 echo "Saved lists of explicitly installed packages to $BACKUPFOLDER"
+echo $(sudo pacman -Qemt) | tr " " "\n" | sed '0~2d' | tr "\n" " " > $BACKUPFOLDER/packages-foreign.txt
+echo "Saved lists of explicitly installed foreign packages to $BACKUPFOLDER"
