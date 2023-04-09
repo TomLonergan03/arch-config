@@ -10,7 +10,10 @@
 # - nano
 # - sudo
 
-# This script will also create a user with the user provided username/password
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+fi
 
 loadkeys uk
 if [[ls /sys/firmware/efi/efivars >> /dev/null]]; then

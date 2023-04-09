@@ -23,6 +23,6 @@ sudo cp -r /var/lib/iwd $BACKUPFOLDER/wifi
 sudo chown -R $WHOAMI:$WHOAMI $BACKUPFOLDER/wifi
 echo "Saved bashrc, fish config, gitconfig, hosts, wifi to $BACKUPFOLDER"
 
-echo $(sudo pacman -Qent) | tr " " "\n" | sed '0~2d' > $BACKUPFOLDER/packages-pacman.txt
-echo $(sudo pacman -Qemt) | tr " " "\n" | sed '0~2d' > $BACKUPFOLDER/packages-foreign.txt
+echo $(sudo pacman -Qent) | tr " " "\n" | sed '0~2d' | tr "\n" " " > $BACKUPFOLDER/packages-pacman.txt
+echo $(sudo pacman -Qemt) | tr " " "\n" | sed '0~2d' | tr "\n" " " > $BACKUPFOLDER/packages-foreign.txt
 echo "Saved lists of explicitly installed packages to $BACKUPFOLDER"
