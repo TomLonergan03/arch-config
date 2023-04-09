@@ -1,4 +1,4 @@
-#!usr/bin/env/ bash
+#!/usr/bin/env bash
 
 # This script will extract the configuration files from the computer it is run on
 # The files will be stored in a folder named $HOSTNAME-$WHOAMI-yyyy-mm-dd-HHMMSS
@@ -19,7 +19,9 @@ cp ~/.bashrc $BACKUPFOLDER/saved.bashrc
 cp ~/.config/fish/config.fish $BACKUPFOLDER
 cp ~/.gitconfig $BACKUPFOLDER/saved.gitconfig
 sudo cp /etc/hosts $BACKUPFOLDER
-echo "Saved bashrc, fish config, gitconfig, and hosts to $BACKUPFOLDER"
+sudo cp -r /var/lib/iwd $BACKUPFOLDER/wifi
+sudo chown -R $WHOAMI:$WHOAMI $BACKUPFOLDER/wifi
+echo "Saved bashrc, fish config, gitconfig, hosts, wifi to $BACKUPFOLDER"
 
 echo $(sudo pacman -Qent) | tr " " "\n" | sed '0~2d' > $BACKUPFOLDER/packages-pacman.txt
 echo $(sudo pacman -Qemt) | tr " " "\n" | sed '0~2d' > $BACKUPFOLDER/packages-foreign.txt
