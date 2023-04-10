@@ -39,10 +39,10 @@ if [[ $answer == "y" ]]; then
         read -r answer
     done
     if [[ $answer == "w" ]]; then
-        sudo cp wifi /var/lib/iwd
-        sudo systemctl enable iwd
-        sudo systemctl start iwd
-        sudo iwctl
+        cp wifi /var/lib/iwd
+        systemctl enable iwd
+        systemctl start iwd
+        iwctl
         elif [[ $answer == "e" ]]; then
         echo "Ethernet configure"
     else
@@ -62,7 +62,7 @@ read -r disk
 fdisk /dev/$disk
 root=""
 root2="a"
-while [[ $root != $root2 ]]; then
+while [[ $root != $root2 ]]; do
     echo "Enter root partition to format (e.g. sda1)"
     read -r root
     echo "Confirm root partition to format (e.g. sda1)"
@@ -102,7 +102,8 @@ mount /dev/$root /mnt
 swapon /dev/$swap
 
 echo "Installing base system"
-sudo pacstrap -K /mnt base base-devel linux linux-firmware nano sudo
+pacman-key --populate archlinux
+pacstrap -K /mnt base base-devel linux linux-firmware nano sudo
 
 echo "Generating fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -130,23 +131,23 @@ echo "Set up root account password"
 passwd
 
 echo "Installing GRUB"
-sudo pacman -S grub
-mount /mnt/$efi
+pacman -S grub efibootmgr
+mount /dev/$efi
 grub-install --target=x86_64-efi --efi-directory=/mnt/$efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
-umount /mnt/$efi
+umount /dev/$efi
 
 echo "Installing microcode"
 if [[ $(lscpu | grep "Vendor ID: GenuineIntel") ]]; then
-    sudo pacman -S intel-ucode
+    pacman -S intel-ucode
     grub-mkconfig -o /boot/grub/grub.cfg
     elif [[ $(lscpu | grep "Vendor ID: AuthenticAMD") ]]; then
-    sudo pacman -S amd-ucode
+    pacman -S amd-ucode
     grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
 echo "Installing git"
-sudo pacman -S git
+pacman -S git
 
 echo "Unmounting partitions"
 umount -R /mnt
