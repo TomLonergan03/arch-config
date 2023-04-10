@@ -10,6 +10,7 @@ fi
 
 echo "Enter username: "
 read -r username
-echo "Enter password: "
-read -r -s password
-useradd -m -g users -G wheel $username -p $password
+useradd -m -g users -G wheel $username
+passwd $username
+
+echo "$username ALL=(ALL) ALL" >> /etc/sudoers

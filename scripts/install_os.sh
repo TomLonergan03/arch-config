@@ -9,6 +9,8 @@
 # - linux-firmware
 # - nano
 # - sudo
+# - git
+# - dhcpcd
 
 if [[ $EUID -ne 0 ]]; then
     echo "This script must be run as root"
@@ -146,8 +148,10 @@ if [[ $(lscpu | grep "Vendor ID: GenuineIntel") ]]; then
     grub-mkconfig -o /boot/grub/grub.cfg
 fi
 
-echo "Installing git"
-pacman -S git
+mkinitcpio -P
+
+echo "Installing git and dhcpcd"
+pacman -S git dhcpcd
 
 echo "Unmounting partitions"
 umount -R /mnt
