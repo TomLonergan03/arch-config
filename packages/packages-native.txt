@@ -1,1 +1,1 @@
-base-devel boost cmake docker eigen firefox fish github-cli htop inetutils libreoffice-fresh light nano neofetch neovim net-tools sof-firmware thermald ttf-fira-code wget 
+base-devel bluez-utils boost cmake docker dotnet-sdk eigen firefox fish github-cli htop inetutils libreoffice-fresh light nano neofetch neovim net-tools sof-firmware thermald ttf-fira-code wget 
