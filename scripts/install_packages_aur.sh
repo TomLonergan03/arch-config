@@ -19,9 +19,6 @@ if ! command -v yay &> /dev/null; then
     echo "Installed yay"
 fi
 
-echo "Enter file name: "
-read -r FILE
-
-echo "Installing packages from $FILE"
-yay -S --needed - < $FILE
-echo "Installed packages from $FILE"
+echo "Installing packages from $1"
+yay -S --needed - < $1
+echo "Installed packages from $1"

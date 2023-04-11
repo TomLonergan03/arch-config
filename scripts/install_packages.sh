@@ -8,9 +8,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-echo "Enter file name: "
-read -r FILE
-
-echo "Installing packages from $FILE"
-pacman -S --needed - < $FILE
-echo "Installed packages from $FILE"
+echo "Installing packages from $1"
+pacman -S --needed - < $1
+echo "Installed packages from $1"
