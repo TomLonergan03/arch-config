@@ -16,12 +16,17 @@ WHOAMI=$(whoami)
 BACKUPFOLDER="$HOSTNAME-$WHOAMI-$(date +%Y-%m-%d-%H:%M:%S)"
 mkdir $BACKUPFOLDER
 cp ~/.bashrc $BACKUPFOLDER/saved.bashrc
-cp ~/.config/fish/config.fish $BACKUPFOLDER
+cp -r ~/.config/fish $BACKUPFOLDER
 cp ~/.gitconfig $BACKUPFOLDER/saved.gitconfig
 sudo cp /etc/hosts $BACKUPFOLDER
 sudo cp -r /var/lib/iwd $BACKUPFOLDER/wifi
 sudo chown -R $WHOAMI:$WHOAMI $BACKUPFOLDER/wifi
-echo "Saved bashrc, fish config, gitconfig, hosts, wifi to $BACKUPFOLDER"
+cp -r ~/.config/hypr $BACKUPFOLDER
+cp -r ~/.config/nvim $BACKUPFOLDER
+cp -r ~/.config/dunst $BACKUPFOLDER
+cp -r ~/.config/kitty $BACKUPFOLDER
+cp -r ~/.config/waybar $BACKUPFOLDER
+echo "Saved dotfiles to $BACKUPFOLDER"
 
 echo $(sudo pacman -Qent) | tr " " "\n" | sed '0~2d' | tr "\n" " " > $BACKUPFOLDER/packages-pacman.txt
 echo "Saved lists of explicitly installed packages to $BACKUPFOLDER"
